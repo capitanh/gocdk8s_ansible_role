@@ -1,0 +1,54 @@
+---
+- name: Create gocd folders
+  file:
+    path: "{{gocd_data_dir}}"
+    state: directory
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0777
+
+- name: Send persisten volume definition and helm chart config file
+  template:
+    src: "{{item}}"
+    dest: /tmp/
+  with_items:
+    - ns.yml
+    - pv.yml
+    - pvc.yml
+    - values.yml
+
+- name: Create k8s resources
+  command: "microk8s.kubectl apply -f {{item}}"
+  with_items:
+    - /tmp/ns.yml
+    - /tmp/pv.yml
+    - /tmp/pvc.yml
+
+- name: Install gocd helm repo
+  command: helm repo add gocd https://gocd.github.io/helm-chart
+  become: "{{admin_user}}"
+
+- name: Install gocd helm chart
+  command: "helm install {{gocd_app_name}} gocd/gocd -f /tmp/values.yml --namespace {{k8s_namespace}}"
+  become: "{{admin_user}}"
+
+#- name: Install gocd helm chart
+#  helm:
+#    name: "{{gocd_app_name}}"
+#    namespace: "{{k8s_namespace}}"
+#    chart:
+#      name: gocd
+#      source:
+#        type: repo
+#        location: https://gocd.github.io/helm-chart
+
+#- name: Install gocd helm chart
+#  kubernetes.core.helm:
+#    release_name: "{{gocd_app_name}}"
+#    chart_ref: gocd
+#    chart_repo_url: https://gocd.github.io/helm-chart
+#    release_namespace: "{{k8s_namespace}}"
+#    values_files:
+#      - /tmp/values.yml
+#    update_repo_cache: yes
+#  become_user: "{{admin_user}}"
