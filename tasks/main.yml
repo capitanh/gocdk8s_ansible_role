@@ -23,6 +23,13 @@
     - /tmp/pv.yml
     - /tmp/pvc.yml
 
+- name: Move preconfigure script into container file system
+  copy:
+    src: /tmp/preconfigure_server.sh
+    dest: "{{gocd_data_dir}}/godata/preconfigure_server.sh"
+    remote_src: true
+    mode: 0777
+
 - name: Install gocd helm repo
   command: helm repo add gocd https://gocd.github.io/helm-chart
   become: "{{admin_user}}"
