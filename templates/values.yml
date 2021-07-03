@@ -40,7 +40,7 @@ server:
   # server.shouldPreconfigure is used to invoke a script to pre configure the elastic agent profile and the plugin settings in the GoCD server.
   # Note: If this value is set to true, then, the serviceAccount.name is configured for the GoCD server pod. The service account token is mounted as a secret and is used in the lifecycle hook.
   # Note: An attempt to preconfigure the GoCD server is made. There are cases where the pre-configuration can fail and the GoCD server starts with an empty config.
-  shouldPreconfigure: false
+  shouldPreconfigure: true
   preconfigureCommand:
     - "/bin/bash"
     - "/preconfigure_server.sh"
@@ -125,8 +125,8 @@ server:
         value: https://github.com/gocd/kubernetes-elastic-agents/releases/download/v3.8.0-246-exp/kubernetes-elastic-agent-3.8.0-246.jar
       - name: GOCD_PLUGIN_INSTALL_docker-registry-artifact-plugin
         value: https://github.com/gocd/docker-registry-artifact-plugin/releases/download/v1.3.0-139-exp/docker-registry-artifact-plugin-1.3.0-139.jar
-      - name: CONFIG_GIT_REPO
-        value: https://luis_novo:alibaba1@bitbucket.org/capitanhws/server-config.git
+      #- name: CONFIG_GIT_REPO
+      #  value: https://luis_novo:*******@bitbucket.org/capitanhws/server-config.git
 
   service:
     # server.service.type is the GoCD Server service type
