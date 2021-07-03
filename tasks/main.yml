@@ -30,7 +30,7 @@
       dest: "{{gocd_data_dir}}/godata/preconfigure_server.sh"
       remote_src: true
       mode: 0777
-  when: shouldPreconfigure==true"
+  when: shouldPreconfigure==true
 
 - name: Install gocd helm repo
   command: helm repo add gocd https://gocd.github.io/helm-chart
