@@ -15,7 +15,6 @@
     - ns.yml
     - pv.yml
     - pvc.yml
-    - values.yml
 
 - name: Create k8s resources
   command: "microk8s.kubectl apply -f {{item}}"
