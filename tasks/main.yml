@@ -1,7 +1,7 @@
 ---
 - name: Create gocd folders
   file:
-    path: "{{gocd_data_dir}}/godata"
+    path: "{{gocd_data_dir}}"
     state: directory
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
