@@ -1,7 +1,7 @@
 ---
 - name: Create gocd folders
   file:
-    path: "{{gocd_data_dir}}/godata"
+    path: "{{gocd_data_dir}}"
     state: directory
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
@@ -24,10 +24,10 @@
     - /tmp/pvc.yml
 
 #- block:
-- name: Move preconfigure script into container file system
+- name: Move preconfigure script into container root file system
   copy:
     src: /tmp/preconfigure_server.sh
-    dest: "{{gocd_data_dir}}/godata/"
+    dest: "{{gocd_data_dir}}"
     remote_src: yes
     mode: 0777
 #  when: shouldPreconfigure==true
