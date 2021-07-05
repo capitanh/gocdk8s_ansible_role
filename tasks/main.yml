@@ -37,7 +37,7 @@
   become: "{{admin_user}}"
 
 - name: FInd our if chart is already installed
-  command: helm list -n gocd | grep -c gocd
+  command: "helm list -n {{k8s_namespace}} | grep -c gocd"
   register: CHART_ALREADY_INSTALLED
 
 - block:
