@@ -51,6 +51,7 @@
   helm:
     name: "{{gocd_app_name}}"
     namespace: "{{k8s_namespace}}"
+    port: 16443
     chart:
       name: gocd
       source:
