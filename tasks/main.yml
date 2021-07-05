@@ -53,7 +53,7 @@
     namespace: "{{k8s_namespace}}"
     port: 16443
     chart:
-      name: gocd
+      name: gocd/gocd
       source:
         type: repo
         location: https://gocd.github.io/helm-chart
