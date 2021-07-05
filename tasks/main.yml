@@ -45,7 +45,7 @@
   - name: Install gocd helm chart
     command: "helm install {{gocd_app_name}} gocd/gocd -f /tmp/values.yml --namespace {{k8s_namespace}}"
     become: "{{admin_user}}"
-  when: CHART_ALREADY_INSTALLED.stdout|int > 1
+  when: CHART_ALREADY_INSTALLED.stdout == "2"
 
 #- name: Install gocd helm chart
 #  helm:
