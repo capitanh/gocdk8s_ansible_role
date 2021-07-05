@@ -36,9 +36,15 @@
   command: helm repo add gocd https://gocd.github.io/helm-chart
   become: "{{admin_user}}"
 
-- name: Install gocd helm chart
-  command: "helm install {{gocd_app_name}} gocd/gocd -f /tmp/values.yml --namespace {{k8s_namespace}}"
-  become: "{{admin_user}}"
+- name: FInd our if chart is already installed
+  shell: helm list -n gocd | grep -c gocd
+  register: CHART_ALREADY_INSTALLED
+
+- block:
+  - name: Install gocd helm chart
+    command: "helm install {{gocd_app_name}} gocd/gocd -f /tmp/values.yml --namespace {{k8s_namespace}}"
+    become: "{{admin_user}}"
+  when: CHART_ALREADY_INSTALLED.stdout > 0
 
 #- name: Install gocd helm chart
 #  helm:
