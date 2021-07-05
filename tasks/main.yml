@@ -1,7 +1,7 @@
 ---
 - name: Create gocd folders
   file:
-    path: "{{gocd_data_dir}}"
+    path: "{{gocd_data_dir}}/godata"
     state: directory
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
@@ -27,7 +27,7 @@
 - name: Move preconfigure script into container root file system
   copy:
     src: /tmp/preconfigure_server.sh
-    dest: "{{gocd_data_dir}}"
+    dest: "{{gocd_data_dir}}/godata"
     remote_src: yes
     mode: 0777
 #  when: shouldPreconfigure==true
