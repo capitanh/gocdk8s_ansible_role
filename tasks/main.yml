@@ -18,7 +18,7 @@
 
 - name: Create k8s resources
   kubernetes.core.k8s:
-    template: ns.yml
+    src: /tmp/ns.yml
 
 
 #- name: Create k8s resources
