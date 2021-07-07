@@ -18,7 +18,8 @@
 
 - name: Create k8s resources
   kubernetes.core.k8s:
-    src: /tmp/ns.yml
+    template: ns.yml
+  become: "{{admin_user}}"
 
 
 #- name: Create k8s resources
