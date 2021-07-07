@@ -25,30 +25,6 @@
     - pvc.yml
   become_user: "{{admin_user}}"
 
-##- block:
-#- name: Move preconfigure script into container root file system
-#  copy:
-#    src: /tmp/preconfigure_server.sh
-#    dest: "{{gocd_data_dir}}/godata"
-#    remote_src: yes
-#    mode: 0777
-##  when: shouldPreconfigure==true
-
-#- name: Install gocd helm repo
-#  command: helm repo add gocd https://gocd.github.io/helm-chart
-#  become: "{{admin_user}}"
-#
-#- name: FInd our if chart is already installed
-#  shell: "helm list -n {{k8s_namespace}} | wc -l"
-#  register: CHART_ALREADY_INSTALLED
-#  become: "{{admin_user}}"
-#
-#- block:
-#  - name: Install gocd helm chart
-#    command: "helm install {{gocd_app_name}} gocd/gocd -f /tmp/values.yml --namespace {{k8s_namespace}}"
-#    become: "{{admin_user}}"
-#  when: CHART_ALREADY_INSTALLED.stdout == "1"
-
 - name: Install gocd helm chart
   kubernetes.core.helm:
     release_name: "{{gocd_app_name}}"
@@ -57,5 +33,4 @@
     release_namespace: "{{k8s_namespace}}"
     values_files:
       - /tmp/values.yml
-    #update_repo_cache: yes
   become_user: "{{admin_user}}"
