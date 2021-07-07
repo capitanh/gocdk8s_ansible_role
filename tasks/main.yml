@@ -19,7 +19,7 @@
 - name: Create k8s resources
   kubernetes.core.k8s:
     template: ns.yml
-  become: "{{admin_user}}"
+  become_user: "{{admin_user}}"
 
 
 #- name: Create k8s resources
