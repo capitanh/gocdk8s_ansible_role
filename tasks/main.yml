@@ -7,18 +7,21 @@
     group: "{{admin_user}}"
     mode: 0777
 
-- name: Send persisten volume definition and helm chart config file
-  template:
-    src: "{{item}}"
-    dest: /tmp/
-  with_items:
-    - ns.yml
-    - pv.yml
-    - pvc.yml
+#- name: Send persisten volume definition and helm chart config file
+#  template:
+#    src: "{{item}}"
+#    dest: /tmp/
+#  with_items:
+#    - ns.yml
+#    - pv.yml
+#    - pvc.yml
 
 - name: Create k8s resources
   kubernetes.core.k8s:
-    template: ns.yml
+    template:
+    - ns.yml
+    - pv.yml
+    - pvc.yml
   become_user: "{{admin_user}}"
 
 
