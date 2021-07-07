@@ -3,6 +3,7 @@
   apt:
     name:
       - pip
+
 - name: Install pip packages
   pip:
     name:
