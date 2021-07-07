@@ -1,4 +1,13 @@
 ---
+- name: Install requrided pakages
+  apt:
+    name:
+      - pip
+- name: Install pip packages
+  pip:
+    name:
+      - kubernetes
+            
 - name: Create gocd folders
   file:
     path: "{{gocd_data_dir}}"
