@@ -57,5 +57,5 @@
     release_namespace: "{{k8s_namespace}}"
     values_files:
       - /tmp/values.yml
-    update_repo_cache: yes
+    #update_repo_cache: yes
   become_user: "{{admin_user}}"
