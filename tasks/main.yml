@@ -50,7 +50,7 @@
 #  when: CHART_ALREADY_INSTALLED.stdout == "1"
 
 - name: Install gocd helm chart
-  community.kubernetes.helm:
+  kubernetes.core.helm:
     release_name: "{{gocd_app_name}}"
     chart_ref: gocd/gocd
     chart_repo_url: https://gocd.github.io/helm-chart
