@@ -17,11 +17,17 @@
     - pvc.yml
 
 - name: Create k8s resources
-  command: "microk8s.kubectl apply -f {{item}}"
-  with_items:
-    - /tmp/ns.yml
-    - /tmp/pv.yml
-    - /tmp/pvc.yml
+  community.kubernetes.k8s:
+    state: present
+    template: ns.yml
+
+
+#- name: Create k8s resources
+#  command: "microk8s.kubectl apply -f {{item}}"
+#  with_items:
+#    - /tmp/ns.yml
+#    - /tmp/pv.yml
+#    - /tmp/pvc.yml
 
 ##- block:
 #- name: Move preconfigure script into container root file system
@@ -32,40 +38,28 @@
 #    mode: 0777
 ##  when: shouldPreconfigure==true
 
-- name: Install gocd helm repo
-  command: helm repo add gocd https://gocd.github.io/helm-chart
-  become: "{{admin_user}}"
-
-- name: FInd our if chart is already installed
-  shell: "helm list -n {{k8s_namespace}} | wc -l"
-  register: CHART_ALREADY_INSTALLED
-  become: "{{admin_user}}"
-
-- block:
-  - name: Install gocd helm chart
-    command: "helm install {{gocd_app_name}} gocd/gocd -f /tmp/values.yml --namespace {{k8s_namespace}}"
-    become: "{{admin_user}}"
-  when: CHART_ALREADY_INSTALLED.stdout == "1"
-
-#- name: Install gocd helm chart
-#  helm:
-#    name: "{{gocd_app_name}}"
-#    namespace: "{{k8s_namespace}}"
-#    port: 16443
-#    chart:
-#      name: gocd
-#      source:
-#        type: repo
-#        location: https://gocd.github.io/helm-chart
+#- name: Install gocd helm repo
+#  command: helm repo add gocd https://gocd.github.io/helm-chart
 #  become: "{{admin_user}}"
+#
+#- name: FInd our if chart is already installed
+#  shell: "helm list -n {{k8s_namespace}} | wc -l"
+#  register: CHART_ALREADY_INSTALLED
+#  become: "{{admin_user}}"
+#
+#- block:
+#  - name: Install gocd helm chart
+#    command: "helm install {{gocd_app_name}} gocd/gocd -f /tmp/values.yml --namespace {{k8s_namespace}}"
+#    become: "{{admin_user}}"
+#  when: CHART_ALREADY_INSTALLED.stdout == "1"
 
 #- name: Install gocd helm chart
-#  kubernetes.core.helm:
+#  community.kubernetes.helm:
 #    release_name: "{{gocd_app_name}}"
-#    chart_ref: gocd
+#    chart_ref: gocd/gocd
 #    chart_repo_url: https://gocd.github.io/helm-chart
 #    release_namespace: "{{k8s_namespace}}"
 #    values_files:
 #      - /tmp/values.yml
-#    update_repo_cache: yes
+#    #update_repo_cache: yes
 #  become_user: "{{admin_user}}"
