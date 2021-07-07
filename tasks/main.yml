@@ -17,8 +17,7 @@
     - pvc.yml
 
 - name: Create k8s resources
-  community.kubernetes.k8s:
-    state: present
+  kubernetes.core.k8s:
     template: ns.yml
 
 
