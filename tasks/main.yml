@@ -7,7 +7,7 @@
   pip:
     name:
       - kubernetes
-            
+
 - name: Create gocd folders
   file:
     path: "{{gocd_data_dir}}"
@@ -16,15 +16,6 @@
     group: "{{admin_user}}"
     mode: 0777
 
-#- name: Send persisten volume definition and helm chart config file
-#  template:
-#    src: "{{item}}"
-#    dest: /tmp/
-#  with_items:
-#    - ns.yml
-#    - pv.yml
-#    - pvc.yml
-
 - name: Create k8s resources
   kubernetes.core.k8s:
     template:
@@ -32,14 +23,6 @@
     - pv.yml
     - pvc.yml
   become_user: "{{admin_user}}"
-
-
-#- name: Create k8s resources
-#  command: "microk8s.kubectl apply -f {{item}}"
-#  with_items:
-#    - /tmp/ns.yml
-#    - /tmp/pv.yml
-#    - /tmp/pvc.yml
 
 ##- block:
 #- name: Move preconfigure script into container root file system
@@ -65,13 +48,13 @@
 #    become: "{{admin_user}}"
 #  when: CHART_ALREADY_INSTALLED.stdout == "1"
 
-#- name: Install gocd helm chart
-#  community.kubernetes.helm:
-#    release_name: "{{gocd_app_name}}"
-#    chart_ref: gocd/gocd
-#    chart_repo_url: https://gocd.github.io/helm-chart
-#    release_namespace: "{{k8s_namespace}}"
-#    values_files:
-#      - /tmp/values.yml
-#    #update_repo_cache: yes
-#  become_user: "{{admin_user}}"
+- name: Install gocd helm chart
+  community.kubernetes.helm:
+    release_name: "{{gocd_app_name}}"
+    chart_ref: gocd/gocd
+    chart_repo_url: https://gocd.github.io/helm-chart
+    release_namespace: "{{k8s_namespace}}"
+    values_files:
+      - /tmp/values.yml
+    update_repo_cache: yes
+  become_user: "{{admin_user}}"
