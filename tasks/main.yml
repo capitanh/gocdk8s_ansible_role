@@ -30,17 +30,8 @@
     release_name: "{{gocd_app_name}}"
     chart_ref: gocd
     chart_repo_url: https://gocd.github.io/helm-chart
-    release_namespace: "{{k8s_namespace}}"
+    release_namespace: "{{gocd_namespace}}"
     wait: yes
     values_files:
-      - /tmp/values.yml
+      - /tmp/gocd_values.yml
   become_user: "{{admin_user}}"
-
-#- name: Wait until gocd pod is ready
-#  kubernetes.core.k8s:
-#    name:
-#    kind: pod
-#    namespace: "{{k8s_namespace}}"
-#    wait: yes
-#    wait_condition:
-#      type: Ready

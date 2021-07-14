@@ -1,13 +1,13 @@
 ---
-shouldPreconfigure:   false                  # Should helm chart run provided preconfigure scripts
-gocd_app_name:        gocd                  # App name in cluster
-k8s_namespace:        gocd                  # k8s cluster namespace to deploy pods under
-gocd_data_dir:        /var/gocd             # Dat dir for gocd
+shouldPreconfigure:       false                 # Should helm chart run provided preconfigure scripts
+gocd_app_name:            gocd                  # App name in cluster
+gocd_namespace:           gocd                  # k8s cluster namespace to deploy pods under
+gocd_data_dir:            /var/gocd             # Dat dir for gocd
 
 # Persistent volume
-pv_name:              gocd-server           # Persisten volume name
-pv_storage_size:      2Gi                   # Persistent volume size
+gocd_pv_name:              gocd-server           # Persisten volume name
+gocd_pv_storage_size:      2Gi                   # Persistent volume size
 
 # Persistent volume claim
-pvc_name:             gocd-server           # Persistent volume claim name
-pvc_size:             2Gi                   # Persistent volume claim size
+gocd_pvc_name:             gocd-server           # Persistent volume claim name
+gocd_pvc_size:             2Gi                   # Persistent volume claim size
