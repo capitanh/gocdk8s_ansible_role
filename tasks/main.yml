@@ -3,6 +3,7 @@
   apt:
     name:
       - pip
+    update_cache: yes
 
 - name: Install pip packages
   pip:
