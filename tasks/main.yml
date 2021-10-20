@@ -36,3 +36,12 @@
     values_files:
       - /tmp/gocd_values.yml
   become_user: "{{admin_user}}"
+
+- name: Get GoCD server pod name
+  kubernetes.core.k8s_info:
+    namespace: "{{gocd_namespace}}"
+    kind: Pod
+  register: godd_pod
+
+- debug:
+    var: godd_pod
