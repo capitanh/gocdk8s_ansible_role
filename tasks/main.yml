@@ -42,6 +42,7 @@
     namespace: "{{gocd_namespace}}"
     kind: Pod
   register: godd_pod
+  become_user: "{{admin_user}}"
 
 - debug:
     var: godd_pod
