@@ -45,4 +45,4 @@
   become_user: "{{admin_user}}"
 
 - debug:
-    var: godd_pod
+    var: godd_pod.resources[0].metadata.name
