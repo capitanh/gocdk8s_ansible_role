@@ -41,8 +41,15 @@
   kubernetes.core.k8s_info:
     namespace: "{{gocd_namespace}}"
     kind: Pod
-  register: godd_pod
+  register: gocd_pod
   become_user: "{{admin_user}}"
 
-- debug:
-    var: godd_pod.resources[0].metadata.name
+- name: Initialize GoCD secrets file
+  kubernetes.core.k8s_exec:
+    namespace: "{{gocd_namespace}}"
+    pod: gocd_pod.resources[0].metadata.name
+    command: /gocd-jre/bin/java -jar /godata/plugins/bundled/gocd-file-based-secrets-plugin.jar init -f /godata/config/secrets.json
+  become_user: "{{admin_user}}"
+
+#- debug:
+#    var: godd_pod.resources[0].metadata.name
