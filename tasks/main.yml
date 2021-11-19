@@ -32,7 +32,7 @@
     chart_ref: gocd
     chart_repo_url: https://gocd.github.io/helm-chart
     release_namespace: "{{gocd_namespace}}"
-    wait: yes
+    wait: no
     values_files:
       - /tmp/gocd_values.yml
   become_user: "{{admin_user}}"
