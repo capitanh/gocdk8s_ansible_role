@@ -12,3 +12,18 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: {{gocd_data_dir}}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: docker-entrypoint
+  labels:
+    type: local
+spec:
+  storageClassName: {{storage_class_name}}
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: {{gocd_data_dir}}/docker-entrypoint.d
