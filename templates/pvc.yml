@@ -1,20 +1,20 @@
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{gocd_pvc_name}}
-  namespace: {{gocd_namespace}}
-spec:
-  storageClassName: {{storage_class_name}}
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: {{gocd_pvc_size}}
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: {{gocd_pvc_name}}
+#  namespace: {{gocd_namespace}}
+#spec:
+#  storageClassName: {{storage_class_name}}
+#  accessModes:
+#    - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: {{gocd_pvc_size}}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: docker-entrypoint-pvc
+  name: docker-config-pvc
   namespace: {{gocd_namespace}}
 spec:
   storageClassName: {{storage_class_name}}

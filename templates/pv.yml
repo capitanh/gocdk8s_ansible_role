@@ -1,22 +1,22 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{gocd_pv_name}}
-  labels:
-    type: local
-spec:
-  storageClassName: {{storage_class_name}}
-  capacity:
-    storage: {{gocd_pv_storage_size}}
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: {{gocd_data_dir}}
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: {{gocd_pv_name}}
+#  labels:
+#    type: local
+#spec:
+#  storageClassName: {{storage_class_name}}
+#  capacity:
+#    storage: {{gocd_pv_storage_size}}
+#  accessModes:
+#    - ReadWriteOnce
+#  hostPath:
+#    path: {{gocd_data_dir}}
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: docker-entrypoint
+  name: docker-config
   labels:
     type: local
 spec:
@@ -26,4 +26,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: {{gocd_data_dir}}/docker-entrypoint.d
+    path: /usr/local/share/docker-config

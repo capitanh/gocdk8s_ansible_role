@@ -22,8 +22,8 @@
   kubernetes.core.k8s:
     template:
     - ns.yml
-    #- pv.yml
-    #- pvc.yml
+    - pv.yml
+    - pvc.yml
   become_user: "{{admin_user}}"
 
 - name: Install gocd helm chart
