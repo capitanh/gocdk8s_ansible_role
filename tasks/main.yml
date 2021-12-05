@@ -10,13 +10,13 @@
     name:
       - kubernetes
 
-- name: Create the k8s namespace
-  kubernetes.core.k8s:
-    name: "{{gocd_namespace}}"
-    api_version: v1
-    kind: Namespace
-    state: present
-  become_user: "{{admin_user}}"
+#- name: Create the k8s namespace
+#  kubernetes.core.k8s:
+#    name: "{{gocd_namespace}}"
+#    api_version: v1
+#    kind: Namespace
+#    state: present
+#  become_user: "{{admin_user}}"
 
 - name: Install gocd helm chart
   kubernetes.core.helm:
@@ -24,6 +24,7 @@
     chart_ref: gocd
     chart_repo_url: https://gocd.github.io/helm-chart
     release_namespace: "{{gocd_namespace}}"
+    create_namespace: true
     wait: yes
     values_files:
       - /tmp/gocd_values.yml
