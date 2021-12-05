@@ -10,13 +10,13 @@
     name:
       - kubernetes
 
-- name: Create gocd folders
-  file:
-    path: "{{gocd_data_dir}}"
-    state: directory
-    owner: "{{admin_user}}"
-    group: "{{admin_user}}"
-    mode: 0777
+#- name: Create gocd folders
+#  file:
+#    path: "{{gocd_data_dir}}"
+#    state: directory
+#    owner: "{{admin_user}}"
+#    group: "{{admin_user}}"
+#    mode: 0777
 
 - name: Create k8s resources
   kubernetes.core.k8s:
