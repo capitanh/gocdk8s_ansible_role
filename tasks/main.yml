@@ -10,14 +10,6 @@
     name:
       - kubernetes
 
-#- name: Create the k8s namespace
-#  kubernetes.core.k8s:
-#    name: "{{gocd_namespace}}"
-#    api_version: v1
-#    kind: Namespace
-#    state: present
-#  become_user: "{{admin_user}}"
-
 - name: Install gocd helm chart
   kubernetes.core.helm:
     release_name: "{{gocd_app_name}}"
