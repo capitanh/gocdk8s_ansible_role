@@ -1,5 +1,5 @@
 ---
-- name: Install requirded pakages
+- name: Install required pakages
   apt:
     name:
       - pip
