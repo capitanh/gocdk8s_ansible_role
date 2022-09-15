@@ -44,7 +44,7 @@
       kind: Secret
       metadata:
         name: "{{gocd_secret_name}}"
-        namespace: gocd_namespace
+        namespace: "{{gocd_namespace}}"
         annotations:
           kubernetes.io/service-account.name: "{{gocd_service_account}}"
       type: kubernetes.io/service-account-token
