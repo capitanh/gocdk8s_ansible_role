@@ -2,6 +2,7 @@
 shouldPreconfigure:       false                 # Should helm chart run provided preconfigure scripts
 gocd_app_name:            gocd                  # App name in cluster
 gocd_service_account:     gocd                  # Service account name
+gocd_secret_name:         gocd-secret           # Secret ID
 gocd_namespace:           gocd                  # k8s cluster namespace to deploy pods under
 gocd_data_dir:            /var/gocd             # Dat dir for gocd
 
