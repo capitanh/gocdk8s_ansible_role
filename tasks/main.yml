@@ -36,16 +36,16 @@
     command: /gocd-jre/bin/java -jar /godata/plugins/bundled/gocd-file-based-secrets-plugin.jar init -f /godata/config/secrets.json
   become_user: "{{admin_user}}"
 
-#- name: Create service account secrets
-#  kubernetes.core.k8s:
-#    state: present
-#    definition:
-#      apiVersion: v1
-#      kind: Secret
-#      metadata:
-#        name: "{{gocd_secret_name}}"
-#        namespace: "{{gocd_namespace}}"
-#        annotations:
-#          kubernetes.io/service-account.name: "{{gocd_service_account}}"
-#      type: kubernetes.io/service-account-token
-#  become_user: "{{admin_user}}"
+- name: Create service account secrets
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: "{{gocd_secret_name}}"
+        namespace: "{{gocd_namespace}}"
+        annotations:
+          kubernetes.io/service-account.name: "{{gocd_service_account}}"
+      type: kubernetes.io/service-account-token
+  become_user: "{{admin_user}}"
