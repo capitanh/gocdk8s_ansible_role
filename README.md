@@ -27,7 +27,7 @@ pvc_size:             2Gi                   # Persistent volume claim size
 
 Dependencies
 ------------
-None
+* pip
 
 Example Playbook
 ----------------
