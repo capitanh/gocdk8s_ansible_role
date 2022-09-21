@@ -5,6 +5,7 @@ gocd_service_account:     gocd                  # Service account name
 gocd_secret_name:         gocd-secret           # Secret ID
 gocd_namespace:           gocd                  # k8s cluster namespace to deploy pods under
 gocd_data_dir:            /var/gocd             # Dat dir for gocd
+gocd_node_port:           30000                               # External port for k8s service visibility from outside the cluster
 
 # Persistent volume
 gocd_pv_name:              gocd-server           # Persisten volume name
