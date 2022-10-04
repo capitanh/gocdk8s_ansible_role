@@ -141,6 +141,8 @@ server:
         value: https://github.com/gocd/kubernetes-elastic-agents/releases/download/v3.8.2-335-exp/kubernetes-elastic-agent-3.8.2-335.jar
       - name: GOCD_PLUGIN_INSTALL_docker-registry-artifact-plugin
         value: https://github.com/gocd/docker-registry-artifact-plugin/releases/download/v1.3.1-304-exp/docker-registry-artifact-plugin-1.3.1-304.jar
+      - name: GOCD_PLUGIN_INSTALL_script_executor_task
+        value: https://github.com/gocd-contrib/script-executor-task/releases/download/1.0.1/script-executor-1.0.1.jar
   service:
     # server.service.type is the GoCD Server service type
     type: "NodePort"
