@@ -53,25 +53,25 @@
 ###################################################################################
 # Export config values as facts for use in playbooks
 
-- name: Get GoCD service IP
-  kubernetes.core.k8s_info:
-    api_version: v1
-    kind: Service
-    name: gocd-server
-    namespace: "{{gocd_namespace}}"
-  become_user: "{{admin_user}}"
-  register: L_GOCD_SERVICE_INFO
-
-- name: Get service account security token and certificate
-  kubernetes.core.k8s_info:
-    api_version: v1
-    kind: Secret
-    name: "{{gocd_secret_name}}"
-    namespace: "{{gocd_namespace}}"
-  become_user: "{{admin_user}}"
-  register: L_GOCD_SECRET_INFO
-
-- name: Export variables
-  set_fact:
-    GOCD_SERVICE_INFO: "{{L_GOCD_SERVICE_INFO}}"
-    GOCD_SECRET_INFO: "{{L_GOCD_SECRET_INFO}}"
+#- name: Get GoCD service IP
+#  kubernetes.core.k8s_info:
+#    api_version: v1
+#    kind: Service
+#    name: gocd-server
+#    namespace: "{{gocd_namespace}}"
+#  become_user: "{{admin_user}}"
+#  register: L_GOCD_SERVICE_INFO
+#
+#- name: Get service account security token and certificate
+#  kubernetes.core.k8s_info:
+#    api_version: v1
+#    kind: Secret
+#    name: "{{gocd_secret_name}}"
+#    namespace: "{{gocd_namespace}}"
+#  become_user: "{{admin_user}}"
+#  register: L_GOCD_SECRET_INFO
+#
+#- name: Export variables
+#  set_fact:
+#    GOCD_SERVICE_INFO: "{{L_GOCD_SERVICE_INFO}}"
+#    GOCD_SECRET_INFO: "{{L_GOCD_SECRET_INFO}}"
