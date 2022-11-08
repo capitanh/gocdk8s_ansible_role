@@ -148,7 +148,7 @@ server:
       - name: GOCD_PLUGIN_INSTALL_ldap_authorization_plugin
         value: https://github.com/gocd/gocd-ldap-authorization-plugin/releases/download/v4.2.1-103/gocd-ldap-authorization-plugin-4.2.1-103.jar
       - name: GOCD_PLUGIN_INSTALL_git_feature_branch_plugin
-        value: https://github.com/ashwanthkumar/gocd-build-github-pull-requests/releases/download/v1.4.0-RC4/git-fb-poller-1.4.0-RC4.jar
+        value: https://github.com/ashwanthkumar/gocd-build-github-pull-requests/releases/download/v1.3.5/git-fb-poller-1.3.5.jar
   service:
     # server.service.type is the GoCD Server service type
     type: "NodePort"
